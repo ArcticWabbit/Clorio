@@ -5,12 +5,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Horizontal Movement")]
-    public float moveSpeed = 10f;
+    public float moveSpeed = 11f;
     public Vector2 direction;
     private bool facingRight = true;
 
     [Header("Vertical Movement")]
-    public float jumpSpeed = 15f;
+    public float jumpSpeed = 10f;
     public float jumpBuffer = 0.25f;
     public float jumpTimer;
 
@@ -19,8 +19,8 @@ public class Player : MonoBehaviour
     public LayerMask groundLayer;
 
     [Header("Physics")]
-    public float maxSpeed = 7f;
-    public float linearDrag = 4f;
+    public float maxSpeed = 10f;
+    public float linearDrag = 5f;
     public float gravity = 1;
     public float fallMultiplier = 5f;
 
@@ -34,12 +34,13 @@ public class Player : MonoBehaviour
     {
         onGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, 1.1f, groundLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, 1.1f, groundLayer);
 
+        // Jump buffer so that Clorio jumps after input mid-air after hitting ground again
         if(Input.GetButtonDown("Jump"))
         {
             jumpTimer = Time.time + jumpBuffer;
         }
 
-        direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
     }
 
     void FixedUpdate()
@@ -76,7 +77,7 @@ public class Player : MonoBehaviour
         jumpTimer = 0;
     }
 
-    // Movement drag method
+    // Horizontal and vertical drag method
     void modifyPhysics()
     {
         bool changingDirections = (direction.x > 0 && rb.velocity.x < 0) || (direction.x > 0 && rb.velocity.x < 0);
@@ -114,6 +115,7 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, facingRight ? 0 : 180, 0);
     }
 
+    // Ground collision detection gizmo
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
