@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 441952579}
   - component: {fileID: 441952578}
   - component: {fileID: 441952577}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -399,7 +399,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 441952576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 38.94, y: 7.5, z: -10}
+  m_LocalPosition: {x: 7.5, y: 7.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -482,7 +482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   direction: {x: 0, y: 0}
-  jumpSpeed: 10
+  jumpSpeed: 15
   jumpBuffer: 0.25
   jumpTimer: 0
   rb: {fileID: 1133577770}
@@ -493,6 +493,7 @@ MonoBehaviour:
   linearDrag: 4
   gravity: 1
   fallMultiplier: 5
+  vLinearDragMultiplier: 0.55
   onGround: 0
   groundLength: 1.1
   colliderOffset: {x: 0.38, y: 0, z: 0}
@@ -506,6 +507,10 @@ PrefabInstance:
     - target: {fileID: 118424, guid: 4e582a70e0a5c4082bef410c4ddf6cd5, type: 3}
       propertyPath: m_Name
       value: BrickBlock (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 118424, guid: 4e582a70e0a5c4082bef410c4ddf6cd5, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 484726, guid: 4e582a70e0a5c4082bef410c4ddf6cd5, type: 3}
       propertyPath: m_RootOrder
@@ -627,7 +632,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 466550, guid: a2921b55bcf164853960c853662332ad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37.96
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 466550, guid: a2921b55bcf164853960c853662332ad, type: 3}
       propertyPath: m_LocalPosition.y
@@ -677,13 +682,30 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6102348, guid: a2921b55bcf164853960c853662332ad, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a2921b55bcf164853960c853662332ad, type: 3}
 --- !u!50 &1133577770 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 5004368, guid: a2921b55bcf164853960c853662332ad, type: 3}
   m_PrefabInstance: {fileID: 1133577769}
   m_PrefabAsset: {fileID: 0}
+--- !u!70 &1133577775
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910775841}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
 --- !u!1001 &1150298179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -694,6 +716,10 @@ PrefabInstance:
     - target: {fileID: 118424, guid: 4e582a70e0a5c4082bef410c4ddf6cd5, type: 3}
       propertyPath: m_Name
       value: BrickBlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 118424, guid: 4e582a70e0a5c4082bef410c4ddf6cd5, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 484726, guid: 4e582a70e0a5c4082bef410c4ddf6cd5, type: 3}
       propertyPath: m_RootOrder
@@ -808,6 +834,10 @@ PrefabInstance:
     - target: {fileID: 189388, guid: 5d2100a586b7a480c8cf7c574d285745, type: 3}
       propertyPath: m_Name
       value: QuestionBlock (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 189388, guid: 5d2100a586b7a480c8cf7c574d285745, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 413682, guid: 5d2100a586b7a480c8cf7c574d285745, type: 3}
       propertyPath: m_RootOrder
@@ -1432,6 +1462,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6160276, guid: ca191cfbedcd04437a6619bfaa0026f6, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 9064687dfb845cf4ea25236d3bcb2d9f, type: 2}
+    - target: {fileID: 6160276, guid: ca191cfbedcd04437a6619bfaa0026f6, type: 3}
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
@@ -1447,6 +1481,10 @@ PrefabInstance:
     - target: {fileID: 118424, guid: 4e582a70e0a5c4082bef410c4ddf6cd5, type: 3}
       propertyPath: m_Name
       value: BrickBlock (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 118424, guid: 4e582a70e0a5c4082bef410c4ddf6cd5, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 484726, guid: 4e582a70e0a5c4082bef410c4ddf6cd5, type: 3}
       propertyPath: m_RootOrder
@@ -1504,6 +1542,10 @@ PrefabInstance:
     - target: {fileID: 189388, guid: 5d2100a586b7a480c8cf7c574d285745, type: 3}
       propertyPath: m_Name
       value: QuestionBlock (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 189388, guid: 5d2100a586b7a480c8cf7c574d285745, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 413682, guid: 5d2100a586b7a480c8cf7c574d285745, type: 3}
       propertyPath: m_RootOrder
@@ -1670,6 +1712,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: QuestionBlock
       objectReference: {fileID: 0}
+    - target: {fileID: 189388, guid: 5d2100a586b7a480c8cf7c574d285745, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 413682, guid: 5d2100a586b7a480c8cf7c574d285745, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1783,6 +1829,10 @@ PrefabInstance:
     - target: {fileID: 189388, guid: 5d2100a586b7a480c8cf7c574d285745, type: 3}
       propertyPath: m_Name
       value: QuestionBlock (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 189388, guid: 5d2100a586b7a480c8cf7c574d285745, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 413682, guid: 5d2100a586b7a480c8cf7c574d285745, type: 3}
       propertyPath: m_RootOrder

@@ -5,12 +5,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Horizontal Movement")]
-    public float moveSpeed = 11f;
+    public float moveSpeed = 10f;
     public Vector2 direction;
     private bool facingRight = true;
 
     [Header("Vertical Movement")]
-    public float jumpSpeed = 10f;
+    public float jumpSpeed = 15f;
     public float jumpBuffer = 0.25f;
     public float jumpTimer;
 
@@ -19,10 +19,11 @@ public class Player : MonoBehaviour
     public LayerMask groundLayer;
 
     [Header("Physics")]
-    public float maxSpeed = 10f;
-    public float linearDrag = 5f;
+    public float maxSpeed = 8f;
+    public float linearDrag = 4f;
     public float gravity = 1;
     public float fallMultiplier = 5f;
+    public float vLinearDragMultiplier = 0.55f;
 
     [Header("Collision")]
     public bool onGround = false;
@@ -32,7 +33,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        onGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, 1.1f, groundLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, 1.1f, groundLayer);
+        onGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLength, groundLayer) || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLength, groundLayer);
 
         // Jump buffer so that Clorio jumps after input mid-air after hitting ground again
         if(Input.GetButtonDown("Jump"))
@@ -40,7 +41,7 @@ public class Player : MonoBehaviour
             jumpTimer = Time.time + jumpBuffer;
         }
 
-        direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
 
     void FixedUpdate()
@@ -92,11 +93,11 @@ public class Player : MonoBehaviour
             {
                 rb.drag = 0f;
             }
-            rb.gravityScale = 0;
+            rb.gravityScale = 0f;
         }else
         {
             rb.gravityScale = gravity;
-            rb.drag = linearDrag * 0.15f;
+            rb.drag = linearDrag * vLinearDragMultiplier;
             if (rb.velocity.y < 0)
             {
                 rb.gravityScale = gravity * fallMultiplier;
