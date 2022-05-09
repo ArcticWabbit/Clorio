@@ -6,13 +6,15 @@ public class CameraFollow : MonoBehaviour
 {
     public GameObject followObject;
     public Vector2 followOffset;
-    public float speed = 3f;
+    public float speed = 6f;
     private Vector2 threshold;
     private Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
+        followOffset.x = 2;
+        followOffset.y = 0;
         threshold = calculateThreshold();
         rb = followObject.GetComponent<Rigidbody2D>();
     }
@@ -27,10 +29,14 @@ public class CameraFollow : MonoBehaviour
         if(Mathf.Abs(xDifference) >= threshold.x)
         {
             newPosition.x = follow.x;
+            followOffset.x = 6;
+            threshold = calculateThreshold();
         }
         if (Mathf.Abs(yDifference) >= threshold.y)
         {
             newPosition.y = follow.y;
+            followOffset.y = 0;
+            threshold = calculateThreshold();
         }
 
         float moveSpeed = rb.velocity.magnitude > speed ? rb.velocity.magnitude : speed;

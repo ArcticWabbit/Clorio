@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
         if(jumpTimer > Time.time && onGround)
         {
             Jump();
+            FindObjectOfType<AudioManager>().Play("Jump Small");
         }
 
         modifyPhysics();
