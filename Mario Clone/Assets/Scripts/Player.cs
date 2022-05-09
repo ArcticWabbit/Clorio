@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [Header("Horizontal Movement")]
     public float moveSpeed = 10f;
     public Vector2 direction;
+    public bool isRunning = false;
     private bool facingRight = true;
 
     [Header("Vertical Movement")]
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
     public float jumpTimer;
 
     [Header("Components")]
+    public Animator animator;
     public Rigidbody2D rb;
     public LayerMask groundLayer;
 
@@ -69,6 +71,10 @@ public class Player : MonoBehaviour
         {
             rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y);
         }
+
+        animator.SetFloat("horizontal", Mathf.Abs(rb.velocity.x));
+        animator.SetFloat("vertical", rb.velocity.y);
+        animator.SetBool("onGround", onGround);
     }
 
     void Jump()

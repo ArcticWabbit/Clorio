@@ -6,7 +6,7 @@ public class CameraFollow : MonoBehaviour
 {
     public GameObject followObject;
     public Vector2 followOffset;
-    public float speed = 6f;
+    public float speed = 3f;
     private Vector2 threshold;
     private Rigidbody2D rb;
 
